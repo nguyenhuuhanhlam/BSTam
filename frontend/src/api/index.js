@@ -5,3 +5,4 @@ const api = axios.create({
 })
 
 export const getAllPatients = async () => await api.get(`/patients`)
+export const postPatient = async (patient) => await api.post(`/patients`, patient)

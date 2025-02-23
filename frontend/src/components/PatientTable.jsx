@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Table } from 'antd'
 import { getAllPatients } from '../api'
 
@@ -15,6 +16,7 @@ const PatientTable = () => {
 		getAllPatients()
 			.then((res) => {
 				setPatients(res.data)
+
 			})
 	}, [])
 

@@ -5,7 +5,7 @@ class Patient(models.Model):
 	last_name = models.CharField(max_length=128)
 	birth_date = models.DateField(null=True, blank=True)
 	age = models.IntegerField()
-	phone_number = models.CharField(max_length=16)
+	phone = models.CharField(max_length=16)
 	address = models.CharField(max_length=256)
 
 	def __str__(self):
