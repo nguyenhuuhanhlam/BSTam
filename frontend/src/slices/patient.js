@@ -14,6 +14,5 @@ export const patientSlice = createSlice({
 	}
 })
 
-
 export const { setPatients } = patientSlice.actions
 export default patientSlice.reducer

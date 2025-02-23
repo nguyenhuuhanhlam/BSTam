@@ -11,12 +11,13 @@ const PatientTable = () => {
 		{ title: 'Tên', dataIndex: 'last_name' },
 		{ title: 'Tuổi', dataIndex: 'age' },
 	]
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		getAllPatients()
 			.then((res) => {
+				dispatch(setPatients(res.data))
 				setPatients(res.data)
-
 			})
 	}, [])
 
