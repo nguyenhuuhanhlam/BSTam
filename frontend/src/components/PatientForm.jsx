@@ -1,27 +1,44 @@
-import { Button, Checkbox, Form, Input, Space } from 'antd'
+import { Button, Checkbox, Form, Input, InputNumber, Space } from 'antd'
+import { postPatient } from '../api'
 
 const PatientForm = () => {
+
+	const handleFormSubmit = async (values) => {
+		console.log(values)
+	}
+
 	return (
 		<div className="p-4">
-			<Form>
-				<Form.Item label="Họ Tên">
+			<Form
+				labelCol={{ flex: '100px' }}
+				layout="horizontal"
+				onFinish={handleFormSubmit}
+			>
+				<Form.Item
+					name="full_name"
+					rules={[{ required: true }]}
+					label="Họ Tên">
 					<Input />
 				</Form.Item>
 
-				<Form.Item label="Tuổi">
+				<Form.Item
+					name="age"
+					rules={[{ required: true }]}
+					label="Tuổi"
+				>
+					<InputNumber />
+				</Form.Item>
+
+				<Form.Item name="phone" label="Số Điện Thoại">
 					<Input />
 				</Form.Item>
 
-				<Form.Item label="Số Điện Thoại">
-					<Input />
-				</Form.Item>
-
-				<Form.Item label="Địa Chỉ">
+				<Form.Item name="address" label="Địa Chỉ">
 					<Input />
 				</Form.Item>
 
 				<Form.Item>
-					<Button>Submit</Button>
+					<Button htmlType="submit">Submit</Button>
 				</Form.Item>
 			</Form>
 		</div>

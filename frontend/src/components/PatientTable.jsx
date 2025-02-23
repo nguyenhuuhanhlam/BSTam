@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Table } from 'antd'
+import { setPatients as dispatchPatients } from '../slices/patient'
 import { getAllPatients } from '../api'
 
 const PatientTable = () => {
@@ -16,14 +17,14 @@ const PatientTable = () => {
 	useEffect(() => {
 		getAllPatients()
 			.then((res) => {
-				dispatch(setPatients(res.data))
+				dispatch(dispatchPatients(res.data))
 				setPatients(res.data)
 			})
 	}, [])
 
 	return (
 		<div className="p-4">
-			<Table columns={columns} dataSource={patients} />
+			<Table columns={columns} dataSource={patients} rowKey="id" />
 		</div>
 	)
 }
