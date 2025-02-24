@@ -1,11 +1,11 @@
 import { Splitter } from 'antd'
-import './App.css'
 import PatientForm from './components/PatientForm'
 import PatientTable from './components/PatientTable'
+import './app.css'
 
 const App = () => {
 	return (
-		<div className="App">
+		<div>
 			<Splitter
 				style={{
 					width: 1280,

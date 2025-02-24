@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Table } from 'antd'
 import { setPatients as dispatchPatients } from '../slices/patient'
 import { getAllPatients } from '../api'
 
 const PatientTable = () => {
-	const [patients, setPatients] = useState([])
+	const { patients } = useSelector(state => state.patientSlice)
+	const rowSelection = {}
 	const columns = [
 		{ key: 'id', title: 'ID', dataIndex: 'id' },
 		{ title: 'Họ', dataIndex: 'first_name' },
@@ -18,13 +19,18 @@ const PatientTable = () => {
 		getAllPatients()
 			.then((res) => {
 				dispatch(dispatchPatients(res.data))
-				setPatients(res.data)
+				// setPatients(res.data)
 			})
 	}, [])
 
 	return (
 		<div className="p-4">
-			<Table columns={columns} dataSource={patients} rowKey="id" />
+			<Table
+				columns={columns}
+				dataSource={patients}
+				rowSelection={{ type: 'radio' }}
+				rowKey="id"
+			/>
 		</div>
 	)
 }

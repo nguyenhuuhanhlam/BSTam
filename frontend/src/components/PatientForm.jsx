@@ -1,10 +1,28 @@
-import { Button, Checkbox, Form, Input, InputNumber, Space } from 'antd'
+import { useDispatch } from 'react-redux'
+import { Button, Form, Input, InputNumber } from 'antd'
 import { postPatient } from '../api'
+import { splitFullName } from '../utils'
+import { insertPatient } from '../slices/patient'
 
 const PatientForm = () => {
+	const dispatch = useDispatch()
 
 	const handleFormSubmit = async (values) => {
-		console.log(values)
+		const { first_name, last_name } = splitFullName(values.full_name)
+
+		const patient = {
+			first_name,
+			last_name,
+			age: values.age,
+			phone: values.phone,
+			address: values.address
+		}
+
+		await postPatient(patient)
+			.then(res => {
+				
+				dispatch(insertPatient(res.data))
+			})
 	}
 
 	return (

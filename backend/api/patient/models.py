@@ -5,8 +5,8 @@ class Patient(models.Model):
 	last_name = models.CharField(max_length=128)
 	birth_date = models.DateField(null=True, blank=True)
 	age = models.IntegerField()
-	phone = models.CharField(max_length=16)
-	address = models.CharField(max_length=256)
+	phone = models.CharField(max_length=16, null=True, blank=True)
+	address = models.CharField(max_length=256, null=True, blank=True)
 
 	def __str__(self):
 		return self.last_name + ', ' + self.first_name
