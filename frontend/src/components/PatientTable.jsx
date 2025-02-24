@@ -12,6 +12,7 @@ const PatientTable = () => {
 		{ title: 'Họ', dataIndex: 'first_name' },
 		{ title: 'Tên', dataIndex: 'last_name' },
 		{ title: 'Tuổi', dataIndex: 'age' },
+		{ title: 'Phone', dataIndex: 'phone' },
 	]
 	const dispatch = useDispatch()
 
@@ -19,7 +20,6 @@ const PatientTable = () => {
 		getAllPatients()
 			.then((res) => {
 				dispatch(dispatchPatients(res.data))
-				// setPatients(res.data)
 			})
 	}, [])
 

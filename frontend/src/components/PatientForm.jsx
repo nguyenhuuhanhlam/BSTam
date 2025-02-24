@@ -5,6 +5,7 @@ import { splitFullName } from '../utils'
 import { insertPatient } from '../slices/patient'
 
 const PatientForm = () => {
+	const [form] = Form.useForm()
 	const dispatch = useDispatch()
 
 	const handleFormSubmit = async (values) => {
@@ -20,14 +21,15 @@ const PatientForm = () => {
 
 		await postPatient(patient)
 			.then(res => {
-				
 				dispatch(insertPatient(res.data))
+				form.resetFields()
 			})
 	}
 
 	return (
 		<div className="p-4">
 			<Form
+				form={form}
 				labelCol={{ flex: '100px' }}
 				layout="horizontal"
 				onFinish={handleFormSubmit}
