@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Table, Input, Space, Button } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { setPatients as dispatchPatients } from '../slices/patient'
+import { setPatients as dispatchPatients, setSelectedPatient } from '../slices/patient'
 import { getAllPatients } from '../api'
 
 const PatientTable = () => {
@@ -14,7 +14,7 @@ const PatientTable = () => {
 
 	const rowSelection = {
 		onChange: (selectedRowKeys, selectedRows) => {
-			console.log(selectedRows,selectedRowKeys)
+			dispatch(setSelectedPatient(selectedRows[0]))
 		}
 	}
 	const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -53,11 +53,6 @@ const PatientTable = () => {
 
 	const columns = [
 		{
-			key: 'id',
-			title: 'ID',
-			dataIndex: 'id'
-		},
-		{
 			title: 'Họ',
 			dataIndex: 'first_name',
 			...getColumnSearchProps('first_name')
@@ -87,7 +82,7 @@ const PatientTable = () => {
 				rowSelection={{ type: 'radio', ...rowSelection }}
 				rowKey="id"
 				size="small"
-				scroll={{ y: 55 * 5 }}
+				scroll={{ y: 48 * 4 }}
 			/>
 		</div>
 	)

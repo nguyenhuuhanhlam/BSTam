@@ -14,7 +14,7 @@ const App = () => {
 					boxShadow: '0 0 16px rgba(0, 0, 0, 0.1)',
 				}}
 			>
-				<Splitter.Panel defaultSize="25%" collapsible max="50%">
+				<Splitter.Panel defaultSize="20%" collapsible max="50%">
 					<PatientForm />
 				</Splitter.Panel>
 				<Splitter.Panel>

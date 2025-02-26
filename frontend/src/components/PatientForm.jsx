@@ -30,8 +30,9 @@ const PatientForm = () => {
 		<div className="p-4">
 			<Form
 				form={form}
-				labelCol={{ flex: '100px' }}
-				layout="horizontal"
+				// labelCol={{ flex: '100px' }}
+				size="small"
+				// layout="vertical"
 				onFinish={handleFormSubmit}
 			>
 				<Form.Item
@@ -46,7 +47,7 @@ const PatientForm = () => {
 					rules={[{ required: true }]}
 					label="Tuổi"
 				>
-					<InputNumber />
+					<Input />
 				</Form.Item>
 
 				<Form.Item name="phone" label="Số Điện Thoại">
