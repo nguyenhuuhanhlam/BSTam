@@ -14,7 +14,7 @@ const PatientForm = () => {
 		const patient = {
 			first_name,
 			last_name,
-			age: values.age,
+			birth_year: values.birth_year,
 			phone: values.phone,
 			address: values.address
 		}
@@ -27,7 +27,7 @@ const PatientForm = () => {
 	}
 
 	return (
-		<div className="p-4">
+		<div className="p-2">
 			<Form
 				form={form}
 				// labelCol={{ flex: '100px' }}
@@ -43,9 +43,9 @@ const PatientForm = () => {
 				</Form.Item>
 
 				<Form.Item
-					name="age"
+					name="birth_year"
 					rules={[{ required: true }]}
-					label="Tuổi"
+					label="Năm Sinh"
 				>
 					<Input />
 				</Form.Item>

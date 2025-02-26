@@ -1,28 +1,34 @@
-import { Button, Space } from 'antd'
-import { PlusOutlined, EyeOutlined } from '@ant-design/icons'
-import ExaminationTable from './ExaminationTable'
+import { Splitter, Button, Space } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
+import ExaminationDateList from './ExaminationDateList'
+import ExaminationDiagnosis from './ExaminationDiagnosis'
+import ExaminationPrescription from './ExaminationPrescription'
 
 const DetailsSection = () => {
 	return (
-		<div className="details-section">
+		<div>
 			<Space>
 				<Button
 					size="small"
-					type="primary"
 					icon={<PlusOutlined />}
 				>
 					Thêm
 				</Button>
-
-				<Button
-					size="small"
-					type="primary"
-					icon={<EyeOutlined />}
-				>
-					Chi Tiết
-				</Button>
 			</Space>
-			<ExaminationTable />
+
+			<div className="p-2">
+				<Splitter>
+					<Splitter.Panel>
+						<ExaminationDateList />
+					</Splitter.Panel>
+					<Splitter.Panel>
+						<ExaminationDiagnosis />
+					</Splitter.Panel>
+					<Splitter.Panel>
+						<ExaminationPrescription />
+					</Splitter.Panel>
+				</Splitter>
+			</div>
 		</div>
 	)
 }

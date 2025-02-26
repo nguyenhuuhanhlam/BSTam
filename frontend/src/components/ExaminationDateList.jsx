@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Table, Button, Space } from 'antd'
 import { getExaminationByPatient } from '../api'
+import { setSelectedExamination } from '../slices/examination'
 
-const ExaminationTable = () => {
+const ExaminationDateList = () => {
 	const { selectedPatient } = useSelector(state => state.patientSlice)
+	const dispatch = useDispatch()
 	const [examinations, setExaminations] = useState([])
 
 	const rowSelection = {
-		onChange: (selectedRowKeys, selectedRows) => { }
+		onChange: (selectedRowKeys, selectedRows) => {
+			dispatch(setSelectedExamination(selectedRows[0]))
+		}
 	}
 
 	const columns = [
@@ -16,26 +20,7 @@ const ExaminationTable = () => {
 			key: 'date',
 			title: 'Ngày Khám',
 			dataIndex: 'date'
-		},
-		{
-			key: 'diagnosis_note',
-			title: 'Chẩn Đoán',
-			dataIndex: 'diagnosis_note'
-		},
-		{
-			key: 'prescription_note',
-			title: 'Đơn Thuốc',
-			dataIndex: 'prescription_note'
-		},
-		// {
-		// 	key: 'action',
-		// 	title: 'Action',
-		// 	render: (_, record) => (
-		// 		<Space size="middle">
-		// 			<a>Chi Tiết</a>
-		// 		</Space>
-		// 	)
-		// }
+		}
 	]
 
 	useEffect(() => {
@@ -48,8 +33,9 @@ const ExaminationTable = () => {
 	}, [selectedPatient])
 
 	return (
-		<div className="p-4">
+		<div className="pr-2">
 			<Table
+				pagination={false}
 				columns={columns}
 				dataSource={examinations}
 				rowKey="id"
@@ -60,4 +46,4 @@ const ExaminationTable = () => {
 	)
 }
 
-export default ExaminationTable
+export default ExaminationDateList

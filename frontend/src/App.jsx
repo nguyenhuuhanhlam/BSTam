@@ -19,6 +19,7 @@ const App = () => {
 				</Splitter.Panel>
 				<Splitter.Panel>
 					<PatientTable />
+					<div className="py-2"/>
 					<DetailsSection />
 				</Splitter.Panel>
 			</Splitter>

@@ -62,7 +62,7 @@ const PatientTable = () => {
 			dataIndex: 'last_name',
 			...getColumnSearchProps('last_name')
 		},
-		{ title: 'Tuổi', dataIndex: 'age' },
+		{ title: 'Năm Sinh', dataIndex: 'birth_year' },
 		{ title: 'Phone', dataIndex: 'phone' },
 	]
 
@@ -75,11 +75,12 @@ const PatientTable = () => {
 	}, [])
 
 	return (
-		<div className="p-4">
+		<div className="p-2">
 			<Table
 				columns={columns}
 				dataSource={patients}
 				rowSelection={{ type: 'radio', ...rowSelection }}
+				pagination={false}
 				rowKey="id"
 				size="small"
 				scroll={{ y: 48 * 4 }}
