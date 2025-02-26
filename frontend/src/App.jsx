@@ -1,6 +1,7 @@
 import { Splitter } from 'antd'
 import PatientForm from './components/PatientForm'
 import PatientTable from './components/PatientTable'
+import DetailsSection from './components/DetailsSection'
 import './app.css'
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
 				</Splitter.Panel>
 				<Splitter.Panel>
 					<PatientTable />
+					<DetailsSection />
 				</Splitter.Panel>
 			</Splitter>
 		</div>

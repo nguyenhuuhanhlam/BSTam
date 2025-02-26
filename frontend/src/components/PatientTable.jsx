@@ -9,10 +9,14 @@ const PatientTable = () => {
 	const [searchText, setSearchText] = useState('')
 	const [searchedColumn, setSearchedColumn] = useState('')
 	const { patients } = useSelector(state => state.patientSlice)
-	const rowSelection = {}
 	const dispatch = useDispatch()
 	const searchInput = useRef(null)
 
+	const rowSelection = {
+		onChange: (selectedRowKeys, selectedRows) => {
+			console.log(selectedRows,selectedRowKeys)
+		}
+	}
 	const handleSearch = (selectedKeys, confirm, dataIndex) => {
 		confirm()
 		setSearchText(selectedKeys[0])
@@ -48,10 +52,19 @@ const PatientTable = () => {
 	})
 
 	const columns = [
-		{ key: 'id', title: 'ID', dataIndex: 'id' },
-		{ title: 'Họ', dataIndex: 'first_name', ...getColumnSearchProps('first_name') },
 		{
-			title: 'Tên', dataIndex: 'last_name',
+			key: 'id',
+			title: 'ID',
+			dataIndex: 'id'
+		},
+		{
+			title: 'Họ',
+			dataIndex: 'first_name',
+			...getColumnSearchProps('first_name')
+		},
+		{
+			title: 'Tên',
+			dataIndex: 'last_name',
 			...getColumnSearchProps('last_name')
 		},
 		{ title: 'Tuổi', dataIndex: 'age' },
@@ -71,7 +84,7 @@ const PatientTable = () => {
 			<Table
 				columns={columns}
 				dataSource={patients}
-				rowSelection={{ type: 'radio' }}
+				rowSelection={{ type: 'radio', ...rowSelection }}
 				rowKey="id"
 				size="small"
 				scroll={{ y: 55 * 5 }}
