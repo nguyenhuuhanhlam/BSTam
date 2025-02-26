@@ -1,4 +1,4 @@
-import { Splitter, Button, Space } from 'antd'
+import { Splitter, Button } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import ExaminationDateList from './ExaminationDateList'
 import ExaminationDiagnosis from './ExaminationDiagnosis'
@@ -6,15 +6,16 @@ import ExaminationPrescription from './ExaminationPrescription'
 
 const DetailsSection = () => {
 	return (
-		<div>
-			<Space>
+		<>
+			<div className="flex pl-2">
 				<Button
 					size="small"
+					type="primary"
 					icon={<PlusOutlined />}
 				>
 					Thêm
 				</Button>
-			</Space>
+			</div>
 
 			<div className="p-2">
 				<Splitter>
@@ -29,7 +30,7 @@ const DetailsSection = () => {
 					</Splitter.Panel>
 				</Splitter>
 			</div>
-		</div>
+		</>
 	)
 }
 

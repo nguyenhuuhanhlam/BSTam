@@ -1,12 +1,22 @@
-import { useDispatch } from 'react-redux'
-import { Button, Form, Input, InputNumber } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, Form, Input, InputNumber, Space } from 'antd'
 import { postPatient } from '../api'
 import { splitFullName } from '../utils'
 import { insertPatient } from '../slices/patient'
+import { useEffect } from 'react'
 
 const PatientForm = () => {
 	const [form] = Form.useForm()
+	const { selectedPatient } = useSelector(state => state.patientSlice)
 	const dispatch = useDispatch()
+
+	// if (selectedPatient)
+	// 	form.setFieldsValue({
+	// 		...selectedPatient,
+	// 		full_name: `${selectedPatient.first_name} ${selectedPatient.last_name}`
+	// 	})
+
+
 
 	const handleFormSubmit = async (values) => {
 		const { first_name, last_name } = splitFullName(values.full_name)
@@ -26,8 +36,16 @@ const PatientForm = () => {
 			})
 	}
 
+	useEffect(() => {
+		if (selectedPatient)
+			form.setFieldsValue({
+				...selectedPatient,
+				full_name: `${selectedPatient.first_name} ${selectedPatient.last_name}`
+			})
+	}, [selectedPatient])
+
 	return (
-		<div className="p-2">
+		<div className="pr-2">
 			<Form
 				form={form}
 				// labelCol={{ flex: '100px' }}
@@ -47,7 +65,7 @@ const PatientForm = () => {
 					rules={[{ required: true }]}
 					label="Năm Sinh"
 				>
-					<Input />
+					<InputNumber />
 				</Form.Item>
 
 				<Form.Item name="phone" label="Số Điện Thoại">
@@ -59,7 +77,10 @@ const PatientForm = () => {
 				</Form.Item>
 
 				<Form.Item>
-					<Button htmlType="submit">Submit</Button>
+					<Space>
+						{/* <Button htmlType="submit">Clear</Button> */}
+						<Button htmlType="submit">Create</Button>
+					</Space>
 				</Form.Item>
 			</Form>
 		</div>

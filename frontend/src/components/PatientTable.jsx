@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Table, Input, Space, Button } from 'antd'
+import { Table, Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { setPatients as dispatchPatients, setSelectedPatient } from '../slices/patient'
 import { getAllPatients } from '../api'
@@ -75,7 +75,7 @@ const PatientTable = () => {
 	}, [])
 
 	return (
-		<div className="p-2">
+		<div className="pl-2">
 			<Table
 				columns={columns}
 				dataSource={patients}
@@ -83,7 +83,8 @@ const PatientTable = () => {
 				pagination={false}
 				rowKey="id"
 				size="small"
-				scroll={{ y: 48 * 4 }}
+				bordered
+				scroll={{ y: 39 * 8 }}
 			/>
 		</div>
 	)

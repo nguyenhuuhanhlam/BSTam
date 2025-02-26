@@ -6,12 +6,13 @@ import './app.css'
 
 const App = () => {
 	return (
-		<div>
+		<div className="p-2">
 			<Splitter
 				style={{
-					width: 1280,
-					height: 640,
-					boxShadow: '0 0 16px rgba(0, 0, 0, 0.1)',
+					// height: 'calc(100vh - 16px)',
+					border: '1px dashed #bbb',
+					borderRadius: '8px',
+					padding: '16px',
 				}}
 			>
 				<Splitter.Panel defaultSize="20%" collapsible max="50%">
