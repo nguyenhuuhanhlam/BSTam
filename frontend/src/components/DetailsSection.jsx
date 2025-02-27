@@ -1,23 +1,23 @@
 import { useState } from 'react'
 import { Splitter, Button, Modal } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+// import { PlusOutlined } from '@ant-design/icons'
 import ExaminationDateList from './ExaminationDateList'
 import ExaminationDiagnosis from './ExaminationDiagnosis'
 import ExaminationPrescription from './ExaminationPrescription'
 import ExaminationModalForm from './forms/ExaminationModalForm'
 
 const DetailsSection = () => {
-	const [isModalOpen, setIsModalOpen] = useState(false)
+	// const [isModalOpen, setIsModalOpen] = useState(false)
 
-	const showModal = () => {
-		setIsModalOpen(true)
-	}
+	// const showModal = () => {
+	// 	setIsModalOpen(true)
+	// }
 
 	return (
 		<>
 			<div className="flex pl-2">
 				<ExaminationModalForm />
-				<Button
+				{/* <Button
 					size="small"
 					color="cyan"
 					variant="solid"
@@ -25,7 +25,7 @@ const DetailsSection = () => {
 					onClick={showModal}
 				>
 					Thêm
-				</Button>
+				</Button> */}
 			</div>
 
 			<div className="p-2">
@@ -42,9 +42,9 @@ const DetailsSection = () => {
 				</Splitter>
 			</div>
 
-			<Modal title="Examination" open={isModalOpen}>
+			{/* <Modal title="Examination" open={isModalOpen}>
 				<p>Some contents...</p>
-			</Modal>
+			</Modal> */}
 		</>
 	)
 }
