@@ -8,4 +8,4 @@ class Patient(models.Model):
 	address = models.CharField(max_length=256, null=True, blank=True)
 
 	def __str__(self):
-		return self.last_name + ', ' + self.first_name
+		return self.last_name + ' ' + self.first_name + ' | ' + str(self.phone)

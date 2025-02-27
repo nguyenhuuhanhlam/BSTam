@@ -9,13 +9,15 @@ const ExaminationPrescription = () => {
 	const { selectedExamination } = useSelector(state => state.examinationSlice)
 
 	return (
-		<div>
-			{selectedExamination && (
-				<div>
-					<Text code>Đơn Thuốc</Text>
-					<p className="whitespace-pre-wrap">{selectedExamination.prescription_note}</p>
-				</div>
-			)}
+		<div className="pl-2">
+			{
+				selectedExamination && (
+					<div>
+						<Text code>Đơn Thuốc</Text>
+						<p className="whitespace-pre-wrap">{selectedExamination.prescription_note}</p>
+					</div>
+				)
+			}
 		</div>
 	)
 }

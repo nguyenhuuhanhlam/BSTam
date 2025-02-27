@@ -5,6 +5,7 @@ const api = axios.create({
 })
 
 export const getAllPatients = async () => await api.get(`/patients/`)
-export const postPatient = async (patient) => await api.post(`/patients/`, patient)
+export const postPatient = async (patient_data) => await api.post(`/patients/`, patient_data)
+export const patchPatient = async (patient_id, patient_data) => await api.patch(`/patients/${patient_id}/`, patient_data)
 
-export const getExaminationByPatient = async (id) => await api.get(`/examinations/${id}/by-patient/`)
+export const getExaminationByPatient = async (patient_id) => await api.get(`/examinations/${patient_id}/by-patient/`)

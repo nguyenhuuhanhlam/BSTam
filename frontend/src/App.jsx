@@ -15,7 +15,7 @@ const App = () => {
 					padding: '16px',
 				}}
 			>
-				<Splitter.Panel defaultSize="20%" collapsible max="50%">
+				<Splitter.Panel defaultSize="18%" resizable={false}>
 					<PatientForm />
 				</Splitter.Panel>
 				<Splitter.Panel>

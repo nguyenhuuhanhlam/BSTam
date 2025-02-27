@@ -1,23 +1,20 @@
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Form, Input, InputNumber, Space } from 'antd'
-import { postPatient } from '../api'
+import { postPatient, patchPatient } from '../api'
 import { splitFullName } from '../utils'
-import { insertPatient } from '../slices/patient'
-import { useEffect } from 'react'
+import { insertPatient, updatePatient } from '../slices/patient'
 
 const PatientForm = () => {
+	const [editmode, setEditMode] = useState(false)
 	const [form] = Form.useForm()
 	const { selectedPatient } = useSelector(state => state.patientSlice)
 	const dispatch = useDispatch()
 
-	// if (selectedPatient)
-	// 	form.setFieldsValue({
-	// 		...selectedPatient,
-	// 		full_name: `${selectedPatient.first_name} ${selectedPatient.last_name}`
-	// 	})
-
-
-
+	const handleFormClear = () => {
+		form.resetFields()
+		setEditMode(false)
+	}
 	const handleFormSubmit = async (values) => {
 		const { first_name, last_name } = splitFullName(values.full_name)
 
@@ -29,19 +26,28 @@ const PatientForm = () => {
 			address: values.address
 		}
 
-		await postPatient(patient)
-			.then(res => {
-				dispatch(insertPatient(res.data))
-				form.resetFields()
-			})
+		if (!editmode)
+			await postPatient(patient)
+				.then(res => {
+					dispatch(insertPatient(res.data))
+					form.resetFields()
+				})
+		else {
+			patchPatient(selectedPatient.id, patient)
+				.then(res => {
+					dispatch(updatePatient(res.data))
+				})
+		}
 	}
 
 	useEffect(() => {
-		if (selectedPatient)
+		if (selectedPatient) {
 			form.setFieldsValue({
 				...selectedPatient,
 				full_name: `${selectedPatient.first_name} ${selectedPatient.last_name}`
 			})
+			setEditMode(true)
+		}
 	}, [selectedPatient])
 
 	return (
@@ -78,8 +84,10 @@ const PatientForm = () => {
 
 				<Form.Item>
 					<Space>
-						{/* <Button htmlType="submit">Clear</Button> */}
-						<Button htmlType="submit">Create</Button>
+						<Button onClick={handleFormClear}>Clear</Button>
+						<Button htmlType="submit" color="cyan" variant="solid">
+							{!editmode ? 'Create' : 'Update'}
+						</Button>
 					</Space>
 				</Form.Item>
 			</Form>
