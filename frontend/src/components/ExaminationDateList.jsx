@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { format } from 'date-fns'
 import { Table } from 'antd'
 import { getExaminationByPatient } from '../api'
-import { setSelectedExamination } from '../slices/examination'
+import { setSelectedExamination, setExaminations } from '../slices/examination'
 
 const ExaminationDateList = () => {
 	const { selectedPatient } = useSelector(state => state.patientSlice)
+	const { examinations } = useSelector(state => state.examinationSlice)
 	const dispatch = useDispatch()
-	const [examinations, setExaminations] = useState([])
 	const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
 	const rowSelection = {
@@ -31,8 +31,8 @@ const ExaminationDateList = () => {
 
 		getExaminationByPatient(selectedPatient.id)
 			.then(res => {
-				setExaminations(res.data)
 				setSelectedRowKeys([])
+				dispatch(setExaminations(res.data))
 				dispatch(setSelectedExamination(null))
 			})
 	}, [selectedPatient])

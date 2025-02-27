@@ -54,9 +54,7 @@ const PatientForm = () => {
 		<div className="pr-2">
 			<Form
 				form={form}
-				// labelCol={{ flex: '100px' }}
 				size="small"
-				// layout="vertical"
 				onFinish={handleFormSubmit}
 			>
 				<Form.Item
