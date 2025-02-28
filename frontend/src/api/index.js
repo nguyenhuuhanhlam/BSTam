@@ -10,3 +10,4 @@ export const patchPatient = async (patient_id, patient_data) => await api.patch(
 
 export const getExaminationByPatient = async (patient_id) => await api.get(`/examinations/${patient_id}/by-patient/`)
 export const postExamination = async (examination_data) => await api.post(`/examinations/`, examination_data)
+export const deleteExamination = async (examination_id) => await api.delete(`/examinations/${examination_id}/`)
