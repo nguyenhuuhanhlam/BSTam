@@ -9,7 +9,6 @@ const App = () => {
 		<div className="p-2">
 			<Splitter
 				style={{
-					// height: 'calc(100vh - 16px)',
 					border: '1px dashed #bbb',
 					borderRadius: '8px',
 					padding: '16px',
@@ -20,7 +19,7 @@ const App = () => {
 				</Splitter.Panel>
 				<Splitter.Panel>
 					<PatientTable />
-					<div className="py-2"/>
+					<div className="py-4" />
 					<DetailsSection />
 				</Splitter.Panel>
 			</Splitter>

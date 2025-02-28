@@ -43,6 +43,8 @@ const ExaminationModalForm = () => {
 		postExamination(examination)
 			.then(res => {
 				dispatch(addExamination(res.data))
+				form.resetFields()
+				setIsModalOpen(false)
 			}
 			).catch(error => console.log(error))
 	}
